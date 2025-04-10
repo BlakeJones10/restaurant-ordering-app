@@ -35,17 +35,17 @@ function removeOrder(itemId) {
 
 function renderOrder() {
     const orderHTML = `
-        <div class="order-section">
+        <div class="order-summary">
             <h2>Your Order</h2>
             ${orderArray.map(item => `
                 <div class="order-item">
                     <span>${item.name}</span>
                     <button class="remove-button" data-id="${item.id}">remove</button>
-                    <span>${item.price}</span>
+                    <span>$${item.price}</span>
                 </div> 
             `).join('')}
             <div class="order-total">
-                <h3>Total: ${orderArray.reduce((total, item) => total + item.price, 0)}</h3>
+                <h3>Total: $${orderArray.reduce((total, item) => total + item.price, 0)}</h3>
             </div>
             ${orderArray.length > 0 ? `
                 <button class="complete-order-btn">Complete Order</button>
@@ -73,18 +73,42 @@ document.addEventListener('click', (e) => {
 });
 
 function paymentSection() {
+    const modalContainer = document.getElementById('payment-modal-container');
+    modalContainer.classList.add('active');
+    
     let paymentSectionHTML = `
-    <div class="payment-modal"
+    <div class="payment-modal">
         <div class="payment-section">
             <h2>Enter Card Details</h2>
-            <form id="payment-form">
+            <form class="payment-form">
                 <input type="text" id="name" placeholder="Enter your name" required />
                 <input type="text" id="card-number" placeholder="Enter Card Number" required />
                 <input type="text" id="cvv" placeholder="Enter CVV" required />
-                <button type="submit" id="payment-btn">Pay</button>
+                <button type="submit" class="payment-btn">Pay</button>
             </form>
         </div>
+    </div>
     `;
     document.getElementById('payment-modal-container').innerHTML = paymentSectionHTML;
+
+    document.querySelector('.payment-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+       const name = document.getElementById('name').value;
+
+       document.getElementById('payment-modal-container').innerHTML = `
+            <div class="payment-modal">
+                <div class="payment-section">
+                    <h2>Thanks, ${name}! Your order is on its way!</h2>
+                </div>
+            </div>
+        `;
+
+        orderArray = [];
+        renderOrder();
+        setTimeout(() => {
+            document.getElementById('payment-modal-container').innerHTML = '';
+            modalContainer.classList.remove('active');
+        }, 3000);
+    });
 }
 renderMenu();
