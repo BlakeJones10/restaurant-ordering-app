@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -5,9 +9,6 @@ body {
     line-height: 24px;
     letter-spacing: 0%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 } 
 
 .logo {
@@ -20,14 +21,12 @@ body {
 .menu-item, .order-summary {
     width: 50%;
     padding: 20px;
-    box-sizing: border-box;
     margin-top: 20px;
 }
 
 .menu-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     border-bottom: 1px solid #3C3C3C;
     padding: 20px 0;
 }
@@ -35,13 +34,12 @@ body {
 .menu-item h1 {
     font-size: 78px;
     margin: 0;
-    text-align: center;
 }
 
 .item-details {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
 }
 
 .menu-item h3 {
@@ -91,14 +89,25 @@ body {
 
 .order-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
     padding: 10px 0;
     font-size: 28px;
     font-weight: 400;
     line-height: 16.8px;
-    letter-spacing: 0%;
+}
+
+.order-item-left {
+    flex: 1;
+}
+
+.order-item-middle {
+    width: 100px;
+    text-align: center;
+}
+
+.order-item-right {
+    width: 60px;
+    text-align: right;
 }
 
 .order-total {
@@ -112,8 +121,6 @@ body {
 }
 
 .remove-button {
-    display: flex;
-    align-items: start;
     color: #BBB;
     background: none;
     border: none;
@@ -121,7 +128,6 @@ body {
     font-size: 12px;
     font-weight: 400;
     line-height: 24px;
-    letter-spacing: 0%;
 }
 
 .total-price {
@@ -218,4 +224,68 @@ body {
 
 .payment-btn:hover {
     background-color: #14c589;
+}
+
+/* Mobile styles (up to 480px) */
+@media (max-width: 480px) {
+    .logo {
+        width: 100%;
+        height: auto;
+    }
+
+    .menu-item, .order-summary {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .menu-item h1 {
+        font-size: 50px;
+    }
+
+    .menu-item h3 {
+        font-size: 20px;
+    }
+
+    .order-item {
+        font-size: 20px;
+    }
+
+    .payment-section {
+        width: 95%;
+        padding: 20px 15px;
+    }
+}
+
+/* Tablet styles (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .logo {
+        width: 90%;
+        height: auto;
+    }
+
+    .menu-item, .order-summary {
+        width: 80%;
+        padding: 15px;
+    }
+
+    .menu-item h1 {
+        font-size: 60px;
+    }
+}
+
+/* Desktop styles (769px and above) */
+@media (min-width: 769px) {
+    .menu-item, .order-summary {
+        width: 50%;
+        max-width: 600px;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.payment-form input {
+    max-width: 100%;
 }

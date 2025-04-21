@@ -39,9 +39,11 @@ function renderOrder() {
             <h2>Your Order</h2>
             ${orderArray.map(item => `
                 <div class="order-item">
-                    <span>${item.name}</span>
-                    <button class="remove-button" data-id="${item.id}">remove</button>
-                    <span>$${item.price}</span>
+                    <div class="order-item-left">${item.name}</div>
+                    <div class="order-item-middle">
+                        <button class="remove-button" data-id="${item.id}">remove</button>
+                    </div>
+                    <div class="order-item-right">$${item.price}</div>
                 </div> 
             `).join('')}
             <div class="order-total">
